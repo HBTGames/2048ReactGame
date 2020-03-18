@@ -10,14 +10,14 @@ class Board extends Component {
         this.state = {
             data: [
                 [
-                    2,
-                    4,
+                    0,
+                    128,
                     0,
                     8
                 ],
                 [
                     2,
-                    2,
+                    0,
                     0,
                     0
                 ],
@@ -29,9 +29,9 @@ class Board extends Component {
                 ],
                 [
                     2,
-                    2,
                     0,
-                    0
+                    0,
+                    4
                 ]
             ]
 
@@ -76,27 +76,16 @@ class Board extends Component {
 
 
                     {
-                        // for (var i = 0; i < this.state.data.length; i++){
-                        //     for (var j = 0; j < item.length; j++) {
-                        //         return <div className={"tile tile-" + item[j] + " tile-position-" + (i + 1) + "-" + (j + 1)}>
-                        //             <div className="tile-inner">{item[j]}</div></div>
-                        //     }
-                        // }
-
-
-
 
                         this.state.data.map((item, i) => {
-                            //document.write(i)
+                            return <div>
+                                {item.map((it, j) => {
+                                    if (it !== 0)
+                                        return <div className={"tile tile-" + it + " tile-position-" + (i + 1) + "-" + (j + 1)}>
+                                            <div className="tile-inner">{it}</div></div>
+                                })}
+                            </div>
 
-                            return <div><div className={"tile tile-" + item[0] + " tile-position-" + (i + 1) + "-" + (1)}>
-                                <div className="tile-inner">{item[0]}</div></div>
-                                <div className={"tile tile-" + item[1] + " tile-position-" + (i + 1) + "-" + (2)}>
-                                    <div className="tile-inner">{item[1]}</div></div>
-                                <div className={"tile tile-" + item[2] + " tile-position-" + (i + 1) + "-" + (3)}>
-                                    <div className="tile-inner">{item[2]}</div></div>
-                                <div className={"tile tile-" + item[3] + " tile-position-" + (i + 1) + "-" + (4)}>
-                                    <div className="tile-inner">{item[3]}</div></div></div>
 
                         })
 
