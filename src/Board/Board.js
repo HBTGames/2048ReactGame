@@ -13,27 +13,27 @@ class Board extends Component {
             data: [
                 [
                     0,
-                    128,
-                    0,
-                    8
-                ],
-                [
-                    2,
                     0,
                     0,
                     0
                 ],
                 [
-                    64,
-                    2,
+                    0,
+                    0,
                     0,
                     0
                 ],
                 [
-                    2,
                     0,
                     0,
-                    4
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    0,
+                    0
                 ]
             ],
             gen: true,
@@ -48,7 +48,7 @@ class Board extends Component {
         let temp_d = this.state.data;
         for (var i = 0; i < temp_d.length; i++) {
             for (var j = 0; j < temp_d[0].length; j++) {
-                console.log(temp_d[i][j]);
+                // console.log(temp_d[i][j]);
                 if (temp_d[i][j] === 0) {
                     a.push(i);
                     b.push(j);
@@ -74,28 +74,70 @@ class Board extends Component {
         //this.forceUpdate();
     }
     componentDidMount() {
+        this.randomGenTwice()
         document.addEventListener('keydown', this.onKeyDown.bind(this));
     }
 
     onKeyDown = (e) => {
         e.preventDefault();
-        if (e.which === 40) {
+        if (e.which === 40) { //go down
             this.setState({
                 data: this.goVertical(this.state.data, 0)
             })
-        } else if (e.which === 38) {
+        } else if (e.which === 38) { // go up
             this.setState({
                 data: this.goVertical(this.state.data, 1)
             })
+        } else if (e.which === 39) { // go right
+            this.setState({
+                data: this.goHori(this.state.data, 0)
+            })
+        } else if (e.which === 37) { // go left
+            this.setState({
+                data: this.goHori(this.state.data, 1)
+            })
         }
+        this.randomGenTwice()
     }
 
     goVertical = (arrOfArr, dir) => {
         return arrOfArr.map((item, i) => this.reduceZero(item, dir))
     }
 
+    goHori = (arrOfArr, dir) => {
+        arrOfArr = arrOfArr[0].map((col, i) => arrOfArr.map(row => row[i]));
+        arrOfArr = arrOfArr.map((item, i) => this.reduceZero(item, dir))
+        arrOfArr = arrOfArr[0].map((col, i) => arrOfArr.map(row => row[i]));
+        return arrOfArr
+
+    }
+
     reduceZero = (arr, dir) => {
         var arr = arr.filter((item) => item !== 0)
+        var n_arr = [];
+        // sum repeated num
+        if (dir === 0) {
+            for (var i = arr.length - 1; i >= 0; i--) {
+                if (arr[i] === arr[i - 1]) {
+                    n_arr.push(arr[i] * 2)
+                    i--
+                } else {
+                    n_arr.push(arr[i]);
+                }
+            }
+            arr = n_arr.reverse()
+        } else {
+            for (var i = 0; i < arr.length; i++) {
+                if (arr[i] === arr[i + 1]) {
+                    n_arr.push(arr[i] * 2)
+                    i++
+                } else {
+                    n_arr.push(arr[i]);
+                }
+            }
+            arr = n_arr
+        }
+        // fill in zero
         var lenZero = 4 - arr.length;
         var arrZero = []
         while (lenZero != 0) {
