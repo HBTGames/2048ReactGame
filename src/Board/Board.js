@@ -79,11 +79,31 @@ class Board extends Component {
 
     onKeyDown = (e) => {
         e.preventDefault();
-        if (e.which === 33) {
-            console.log("hi")
+        if (e.which === 40) {
+            this.setState({
+                data: this.goVertical(this.state.data, 0)
+            })
+        } else if (e.which === 38) {
+            this.setState({
+                data: this.goVertical(this.state.data, 1)
+            })
         }
     }
 
+    goVertical = (arrOfArr, dir) => {
+        return arrOfArr.map((item, i) => this.reduceZero(item, dir))
+    }
+
+    reduceZero = (arr, dir) => {
+        var arr = arr.filter((item) => item !== 0)
+        var lenZero = 4 - arr.length;
+        var arrZero = []
+        while (lenZero != 0) {
+            arrZero.push(0)
+            lenZero--
+        }
+        return dir === 0 ? [...arrZero, ...arr] : [...arr, ...arrZero]
+    }
 
     randomGenOnce() {
         //change a random 0 to 2/4
@@ -114,7 +134,7 @@ class Board extends Component {
         return (
 
             <div className="board">
-                <button onClick={() => { this.randomGenTwice() }}>RandomGen</button>
+                {/* <button onClick={() => { this.randomGenTwice() }}>RandomGen</button> */}
                 <div className="grid-container" >
                     <div className="grid-row" >
                         <div className="grid-cell" ></div>
