@@ -37,6 +37,8 @@ class Board extends Component {
                 ]
             ],
             gen: true,
+            curScore: 0,
+            bestScore: 0
 
         };
     }
@@ -174,47 +176,52 @@ class Board extends Component {
     render() {
 
         return (
-
-            <div className="board">
-                {/* <button onClick={() => { this.randomGenTwice() }}>RandomGen</button> */}
-                <div className="grid-container" >
-                    <div className="grid-row" >
-                        <div className="grid-cell" ></div>
-                        <div className="grid-cell" ></div>
-                        <div className="grid-cell" ></div>
-                        <div className="grid-cell" ></div>
-                    </div><div className="grid-row" >
-                        <div className="grid-cell" ></div>
-                        <div className="grid-cell" ></div>
-                        <div className="grid-cell" ></div>
-                        <div className="grid-cell"></div>
-                    </div>
-                    <div className="grid-row" >
-                        <div className="grid-cell" ></div>
-                        <div className="grid-cell" ></div>
-                        <div className="grid-cell" ></div>
-                        <div className="grid-cell" ></div>
-                    </div><div className="grid-row">
-                        <div className="grid-cell" >
-                        </div><div className="grid-cell" >
-                        </div><div className="grid-cell" >
-                        </div><div className="grid-cell" >
+            <div>
+                <div class="scores-container" >
+                    <div class="score-container" >{this.state.curScore}</div>
+                    <span >&nbsp;</span>
+                    <div class="best-container" >{this.state.bestScore}</div></div>
+                <div className="board">
+                    {/* <button onClick={() => { this.randomGenTwice() }}>RandomGen</button> */}
+                    <div className="grid-container" >
+                        <div className="grid-row" >
+                            <div className="grid-cell" ></div>
+                            <div className="grid-cell" ></div>
+                            <div className="grid-cell" ></div>
+                            <div className="grid-cell" ></div>
+                        </div><div className="grid-row" >
+                            <div className="grid-cell" ></div>
+                            <div className="grid-cell" ></div>
+                            <div className="grid-cell" ></div>
+                            <div className="grid-cell"></div>
+                        </div>
+                        <div className="grid-row" >
+                            <div className="grid-cell" ></div>
+                            <div className="grid-cell" ></div>
+                            <div className="grid-cell" ></div>
+                            <div className="grid-cell" ></div>
+                        </div><div className="grid-row">
+                            <div className="grid-cell" >
+                            </div><div className="grid-cell" >
+                            </div><div className="grid-cell" >
+                            </div><div className="grid-cell" >
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="tile-container">
-                    {
-                        this.state.data.map((item, i) => {
-                            return <div>{item.map((it, j) => {
-                                if (it !== 0) return <div className={"tile tile-" + it + " tile-position-" + (i + 1) + "-" + (j + 1)} >
-                                    <div className="tile-inner">{it}</div></div>
-                            })}</div>
-                        })
-                    }
-                </div>
+                    <div className="tile-container">
+                        {
+                            this.state.data.map((item, i) => {
+                                return <div>{item.map((it, j) => {
+                                    if (it !== 0) return <div className={"tile tile-" + it + " tile-position-" + (i + 1) + "-" + (j + 1)} >
+                                        <div className="tile-inner">{it}</div></div>
+                                })}</div>
+                            })
+                        }
+                    </div>
 
-            </div>
+                </div></div>
+
 
         );
     }
