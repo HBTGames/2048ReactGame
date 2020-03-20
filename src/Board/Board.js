@@ -217,6 +217,11 @@ class Board extends Component {
             ]
         })
         this.randomGenTwice()
+        if (this.state.bestScore < this.state.curScore) {
+            this.setState({
+                bestScore: this.state.curScore
+            })
+        }
     }
 
     render() {
