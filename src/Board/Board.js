@@ -39,6 +39,7 @@ class Board extends Component {
             gen: true,
             curScore: 0,
             bestScore: 0,
+            gameOver: false
         };
     }
 
@@ -114,7 +115,6 @@ class Board extends Component {
         arrOfArr = arrOfArr.map((item, i) => this.reduceZero(item, dir))
         arrOfArr = arrOfArr[0].map((col, i) => arrOfArr.map(row => row[i]));
         return arrOfArr
-
     }
 
     reduceZero = (arr, dir) => {
@@ -128,7 +128,7 @@ class Board extends Component {
                     let temp_s = this.state.curScore +  (arr[i]*2)
                     this.setState({curScore: temp_s})
                     i--
-                    
+
                 } else {
                     n_arr.push(arr[i]);
                 }
@@ -182,13 +182,19 @@ class Board extends Component {
     }
 
     render() {
-
+        let gameOver = (
+            <div class="game-message game-over">
+                <p >Game over!</p>
+                <div class="lower" >
+                    <a class="retry-button" >Try again</a></div></div>
+        )
         return (
-            <div>
+            <div className="game-container">
                 <div class="scores-container" >
                     <div class="score-container" >{this.state.curScore}</div>
                     <span >&nbsp;</span>
                     <div class="best-container" >{this.state.bestScore}</div></div>
+                {this.state.gameOver ? gameOver : null}
                 <div className="board">
                     {/* <button onClick={() => { this.randomGenTwice() }}>RandomGen</button> */}
                     <div className="grid-container" >
