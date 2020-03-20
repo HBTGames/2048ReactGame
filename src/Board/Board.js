@@ -107,7 +107,29 @@ class Board extends Component {
         /*var temp_s = this.state.data.reduce(function(a,b) { return a.concat(b) }) // flatten array
             .reduce(function(a,b) { return a + b });
         this.setState({score: temp_s});*/
+        console.log(this.checkGameOver())
         console.log(this.state.curScore);
+
+    }
+
+    checkGameOver = () =>{  //true if game over
+        let temp_d = this.state.data;
+        for (var i = 0; i < temp_d.length; i++){
+            
+            for (var j = 0; j < temp_d[0].length; j++){
+                if (i != temp_d.length-1){
+                    if (temp_d[i+1][j] == temp_d[i][j]){
+                        return false;
+                    }
+                }
+                if (j != temp_d.length-1){
+                    if (temp_d[i][j+1] == temp_d[i][j]){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 
     goVertical = (arrOfArr, dir) => {
