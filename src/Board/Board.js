@@ -72,7 +72,6 @@ class Board extends Component {
             temp_d[a[ranIndex2]][b[ranIndex2]] = 2;
             this.setState({ data: temp_d });
         }
-
         //this.forceUpdate();
     }
     componentDidMount() {
@@ -107,8 +106,8 @@ class Board extends Component {
         /*var temp_s = this.state.data.reduce(function(a,b) { return a.concat(b) }) // flatten array
             .reduce(function(a,b) { return a + b });
         this.setState({score: temp_s});*/
-        console.log(this.checkGameOver())
-        console.log(this.state.curScore);
+        this.checkGameOver()
+        //console.log(this.state.curScore);
 
     }
 
@@ -194,7 +193,7 @@ class Board extends Component {
         let temp_d = this.state.data;
         for (var i = 0; i < temp_d.length; i++) {
             for (var j = 0; j < temp_d[0].length; j++) {
-                console.log(temp_d[i][j]);
+                //console.log(temp_d[i][j]);
                 if (temp_d[i][j] === 0) {
                     a.push(i);
                     b.push(j);
@@ -241,6 +240,8 @@ class Board extends Component {
                     0
                 ]
             ]
+        },() => {
+            this.randomGenTwice();
         })
         if (this.state.bestScore < this.state.curScore) {
             this.setState({
@@ -248,6 +249,7 @@ class Board extends Component {
             })
         }
     }
+
 
     render() {
         let gameOver = (
