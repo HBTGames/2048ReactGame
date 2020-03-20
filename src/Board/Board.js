@@ -112,8 +112,9 @@ class Board extends Component {
 
     }
 
-    checkGameOver = () =>{  //true if game over
+    checkGameOver = () => {  //true if game over
         let temp_d = this.state.data;
+<<<<<<< Updated upstream
         for (var i = 0; i < temp_d.length; i++){
             
             for (var j = 0; j < temp_d[0].length; j++){
@@ -126,6 +127,18 @@ class Board extends Component {
                 if (j != temp_d.length-1){
                     if (temp_d[i][j+1] == temp_d[i][j]){
                         this.setState({gameOver: false});
+=======
+        for (var i = 0; i < temp_d.length; i++) {
+
+            for (var j = 0; j < temp_d[0].length; j++) {
+                if (i != temp_d.length - 1) {
+                    if (temp_d[i + 1][j] == temp_d[i][j]) {
+                        return false;
+                    }
+                }
+                if (j != temp_d.length - 1) {
+                    if (temp_d[i][j + 1] == temp_d[i][j]) {
+>>>>>>> Stashed changes
                         return false;
                     }
                 }
@@ -214,6 +227,7 @@ class Board extends Component {
     restart = () => {
         this.setState({
             gameOver: false,
+            curScore: 0,
             data: [
                 [
                     0,
