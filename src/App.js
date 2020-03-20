@@ -18,7 +18,7 @@ class App extends Component {
       <div className="App">
         <div className="pg">
           <h1>2048</h1>
-          <p>Join the numbers and get to 2048!</p>
+          <p>Use keyboard ↓ ↑ ← → to Join the numbers and get to 2048!<br /> 用上下左右方向键将相同的数字融合在一起得到2048！</p>
           <Board />
         </div>
 
