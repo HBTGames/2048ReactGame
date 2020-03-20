@@ -38,8 +38,9 @@ class Board extends Component {
             ],
             gen: true,
             curScore: 0,
-            bestScore: 0
+            bestScore: 0,
 
+            score: 0,
         };
     }
 
@@ -100,6 +101,10 @@ class Board extends Component {
             })
         }
         this.randomGenTwice()
+        /*var temp_s = this.state.data.reduce(function(a,b) { return a.concat(b) }) // flatten array
+            .reduce(function(a,b) { return a + b });
+        this.setState({score: temp_s});*/
+        console.log(this.state.score);
     }
 
     goVertical = (arrOfArr, dir) => {
@@ -122,7 +127,10 @@ class Board extends Component {
             for (var i = arr.length - 1; i >= 0; i--) {
                 if (arr[i] === arr[i - 1]) {
                     n_arr.push(arr[i] * 2)
+                    let temp_s = this.state.score +  (arr[i]*2)
+                    this.setState({score: temp_s})
                     i--
+                    
                 } else {
                     n_arr.push(arr[i]);
                 }
@@ -132,6 +140,8 @@ class Board extends Component {
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i] === arr[i + 1]) {
                     n_arr.push(arr[i] * 2)
+                    let temp_s = this.state.score +  (arr[i]*2)
+                    this.setState({score: temp_s})
                     i++
                 } else {
                     n_arr.push(arr[i]);
