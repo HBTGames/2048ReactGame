@@ -39,7 +39,7 @@ class Board extends Component {
             gen: true,
             curScore: 0,
             bestScore: 0,
-            gameOver: true
+            gameOver: false
         };
     }
 
