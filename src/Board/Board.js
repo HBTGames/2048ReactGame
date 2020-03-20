@@ -39,7 +39,7 @@ class Board extends Component {
             gen: true,
             curScore: 0,
             bestScore: 0,
-            gameOver: false
+            gameOver: true
         };
     }
 
@@ -125,8 +125,9 @@ class Board extends Component {
             for (var i = arr.length - 1; i >= 0; i--) {
                 if (arr[i] === arr[i - 1]) {
                     n_arr.push(arr[i] * 2)
-                    let temp_s = this.state.curScore +  (arr[i]*2)
-                    this.setState({curScore: temp_s})
+                    let temp_s = this.state.curScore + (arr[i] * 2)
+                    //update score
+                    this.setState({ curScore: temp_s })
                     i--
 
                 } else {
@@ -138,8 +139,8 @@ class Board extends Component {
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i] === arr[i + 1]) {
                     n_arr.push(arr[i] * 2)
-                    let temp_s = this.state.curScore +  (arr[i]*2)
-                    this.setState({curScore: temp_s})
+                    let temp_s = this.state.curScore + (arr[i] * 2)
+                    this.setState({ curScore: temp_s })
                     i++
                 } else {
                     n_arr.push(arr[i]);
@@ -181,12 +182,45 @@ class Board extends Component {
         //this.forceUpdate();
     }
 
+    restart = () => {
+        this.setState({
+            gameOver: false,
+            data: [
+                [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            ]
+        })
+        this.randomGenTwice()
+    }
+
     render() {
         let gameOver = (
             <div class="game-message game-over">
                 <p >Game over!</p>
                 <div class="lower" >
-                    <a class="retry-button" >Try again</a></div></div>
+                    <a class="retry-button" onClick={this.restart}>Try again</a></div></div>
         )
         return (
             <div className="game-container">
