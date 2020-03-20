@@ -86,20 +86,24 @@ class Board extends Component {
             this.setState({
                 data: this.goVertical(this.state.data, 0)
             })
+            this.randomGenTwice()
         } else if (e.which === 38) { // go up
             this.setState({
                 data: this.goVertical(this.state.data, 1)
             })
+            this.randomGenTwice()
         } else if (e.which === 39) { // go right
             this.setState({
                 data: this.goHori(this.state.data, 0)
             })
+            this.randomGenTwice()
         } else if (e.which === 37) { // go left
             this.setState({
                 data: this.goHori(this.state.data, 1)
             })
+            this.randomGenTwice()
         }
-        this.randomGenTwice()
+
         /*var temp_s = this.state.data.reduce(function(a,b) { return a.concat(b) }) // flatten array
             .reduce(function(a,b) { return a + b });
         this.setState({score: temp_s});*/
