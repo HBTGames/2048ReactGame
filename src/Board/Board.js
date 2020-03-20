@@ -119,16 +119,19 @@ class Board extends Component {
             for (var j = 0; j < temp_d[0].length; j++){
                 if (i != temp_d.length-1){
                     if (temp_d[i+1][j] == temp_d[i][j]){
+                        this.setState({gameOver: false});
                         return false;
                     }
                 }
                 if (j != temp_d.length-1){
                     if (temp_d[i][j+1] == temp_d[i][j]){
+                        this.setState({gameOver: false});
                         return false;
                     }
                 }
             }
         }
+        this.setState({gameOver: true});
         return true;
     }
 
